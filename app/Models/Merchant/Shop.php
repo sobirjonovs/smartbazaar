@@ -2,6 +2,7 @@
 
 namespace App\Models\Merchant;
 
+use App\Foundation\Filters\Concerns\HasFilterable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -29,5 +30,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Shop extends Model
 {
-    use HasFactory;
+    use HasFactory, HasFilterable;
+
+    protected $guarded = ['id'];
 }

@@ -18,12 +18,15 @@ readonly class UserRepository
      * @param CreateUserDto $dto
      * @return Merchant
      */
-    public function create(CreateUserDto $dto): Merchant
+    public function createOrUpdate(CreateUserDto $dto): Merchant
     {
-        return $this->model->create([
+        return $this->model->updateOrCreate([
+            'id' => $dto->id
+        ], [
             'name' => $dto->name,
+            'description' => $dto->description,
             'email' => $dto->email,
-            'password' => $dto->password
+            'password' => $dto->password,
         ]);
     }
 

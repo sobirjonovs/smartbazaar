@@ -7,21 +7,21 @@ use App\Models\Merchant\Shop;
 use App\Repository\Merchant\ShopRepository;
 use Illuminate\Database\Eloquent\Model;
 
-class ShopService
+readonly class ShopService
 {
     /**
      * @param ShopRepository $repository
      */
     public function __construct(
-        public ShopRepository $repository,
+        private ShopRepository $repository,
     ) {}
 
     /**
      * @param CreateShopDto $dto
      * @return Model|Shop
      */
-    public function create(CreateShopDto $dto): Model|Shop
+    public function createOrUpdate(CreateShopDto $dto): Model|Shop
     {
-        return $this->repository->create($dto);
+        return $this->repository->createOrUpdate($dto);
     }
 }

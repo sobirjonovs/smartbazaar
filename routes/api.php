@@ -4,7 +4,6 @@ use App\Http\Controllers\Api\Admin\AuthController as AdminAuthControllerAlias;
 use App\Http\Controllers\Api\Merchant\AuthController as MerchantAuthController;
 use App\Http\Controllers\Api\Merchant\ShopController;
 use App\Http\Controllers\Api\User\AuthController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,7 +39,9 @@ Route::middleware('auth:api')->prefix('user')->name('user.')->group(function () 
 });
 
 Route::middleware('auth:api-merchant')->prefix('merchant')->name('merchant.')->group(function () {
-    Route::get('shops', [ShopController::class, 'index'])->name('shops');
+    Route::put('update', [MerchantAuthController::class, 'update'])->name('update');
+    Route::get('me', [MerchantAuthController::class, 'me'])->name('update');
+    Route::apiResource('shops', ShopController::class);
 });
 
 Route::middleware('auth:api-admin')->prefix('admin')->name('admin.')->group(function () {

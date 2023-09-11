@@ -2,10 +2,10 @@
 
 namespace App\Models\Merchant;
 
+use App\Foundation\Filters\Concerns\HasFilterable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Laravel\Passport\HasApiTokens;
 
 /**
@@ -45,7 +45,9 @@ use Laravel\Passport\HasApiTokens;
  */
 class Merchant extends Authenticatable
 {
-    use HasFactory, HasApiTokens;
+    use HasFactory, HasApiTokens, HasFilterable;
+
+    protected $guarded = ['id'];
 
     /**
      * @return HasMany

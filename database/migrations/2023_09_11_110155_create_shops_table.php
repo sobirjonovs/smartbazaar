@@ -17,8 +17,8 @@ return new class extends Migration
             $table->foreignId('merchant_id');
             $table->string('address');
             $table->string('schedule');
-            $table->point('latitude');
-            $table->point('longitude');
+            $table->float('latitude');
+            $table->float('longitude');
             $table->tinyInteger('status')->default(ShopStatus::ACTIVE->value);
             $table->timestamps();
         });

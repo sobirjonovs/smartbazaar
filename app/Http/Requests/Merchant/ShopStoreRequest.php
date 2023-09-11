@@ -16,7 +16,9 @@ class ShopStoreRequest extends FormRequest
         return [
             'address' => 'required|string',
             'schedule' => 'required|string',
-            'latitude' => 'required|string',
+            'latitude' => 'required|numeric',
+            'longitude' => 'required|numeric',
+            'status' => 'nullable|numeric'
         ];
     }
 }
