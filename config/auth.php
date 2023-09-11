@@ -1,5 +1,9 @@
 <?php
 
+use App\Models\Admin\Admin;
+use App\Models\Merchant\Merchant;
+use App\Models\User\User;
+
 return [
 
     /*
@@ -40,6 +44,21 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+
+        'api' => [
+            'driver' => 'passport',
+            'provider' => 'users',
+        ],
+
+        'api-merchant' => [
+            'driver' => 'passport',
+            'provider' => 'merchants'
+        ],
+
+        'api-admin' => [
+            'driver' => 'passport',
+            'provider' => 'admins'
+        ]
     ],
 
     /*
@@ -62,13 +81,18 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\Models\User::class,
+            'model' => User::class,
         ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'merchants' => [
+            'driver' => 'eloquent',
+            'model' => Merchant::class,
+        ],
+
+        'admins' => [
+            'driver' => 'eloquent',
+            'model' => Admin::class
+        ]
     ],
 
     /*
@@ -93,6 +117,20 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
+            'table' => 'password_reset_tokens',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+
+        'merchants' => [
+            'provider' => 'merchants',
+            'table' => 'password_reset_tokens',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+
+        'admins' => [
+            'provider' => 'admins',
             'table' => 'password_reset_tokens',
             'expire' => 60,
             'throttle' => 60,

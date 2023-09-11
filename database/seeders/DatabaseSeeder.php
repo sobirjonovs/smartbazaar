@@ -3,7 +3,12 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Enums\MerchantStatus;
+use App\Models\Admin\Admin;
+use App\Models\Merchant\Merchant;
+use App\Models\User\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -12,11 +17,23 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
+        $admin = Admin::create([
+            'username' => 'admin',
+            'password' => Hash::make('password')
+        ]);
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        $user = User::create([
+            'email' => 'user@example.com',
+            'password' => Hash::make('password'),
+            'name' => 'John Doe'
+        ]);
+
+        $merchant = Merchant::create([
+            'email' => 'merchant@example.com',
+            'password' => Hash::make('password'),
+            'name' => 'Merchant',
+            'description' => 'Description',
+            'status' => MerchantStatus::ACTIVE
+        ]);
     }
 }
